@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{{ PostImage }}
+    {% if user.PostImage %}
+        {{ PostImage.image.url }}
+    {% endif %}
+    {% if user.is_authenticated %}
+
+        <h1> Welcome {{ user.username }}. Please go ahead and add your image below. </h1>
+        <h5>Click here to add image
+        <a href="{% url 'post_image' %}">Post Image</a>
+        </h5>
+        {% load static %}
+        <img src="{% static 'spider.jpeg' %}" alt="spider plant" style="height: 17%; width:17%;" >
+
+        
+
+    {% else %}
+        <h1> Please create an account first to post a picture. </h1>
+        <p style="color: red;" > {{ message}} or <a href="{% url 'signup' %}">signup</a> if you don't have an account </p>
+        <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" >Post</button>
+    {% endif %}
+    
+ 
+{% endblock %}
