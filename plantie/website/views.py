@@ -5,6 +5,7 @@ from .import forms
 from .forms import LoginForm, PostImageForm
 from .models import PostImage
 from django.http import HttpResponse
+from django.db.models import Q  # New
 
 
 # Create your views here.
@@ -65,3 +66,13 @@ def plant_show(request):
     if request.method == 'GET':
         Gallery = PostImage.objects.all().order_by('-id')
         return render(request, 'plant_show.html', {'plantie_images': Gallery})
+
+def search_plant(request):
+    if request.method == 'GET':
+        #query all the images
+        param = request.GET.get('search')
+        res = PostImage.objects.filter(Q(name__icontains=param) | Q(bio__icontains=param))
+        return render(request, 'search_plant.html', {'res': res})
+    else:
+        res = PostImage.objects.all().order_by('-date_created')
+        return render(request, 'search_plant.html', {'res': res})

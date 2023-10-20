@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block content %}
+    <br/>
+    <div class="px-lg-5">
+        <div class="row">
+            
+            {% for image in res %}
+            <div class="col-xl-3 col-lg-4 col-md-6 mb-4" style="max-width: 300px; max-height: 400px;">
+                <div class="bg-white rounded shadow-sm" style="height: 100%;">
+                    <img src="{{ image.image.url }}" alt="{{ image.name }}" class="img-fluid card-img-top" style="max-width: 100%; max-height: 200px;">
+                    <div class="p-4">
+                        <h5> <a class="text-dark">{{ image.name }}</a></h5>
+                        <p class="small text-muted mb-0">{{ image.bio }}</p>
+                        <br/>
+                        <p class="small text-muted mb-0">{{ image.date_created }}</p>
+                     
+                        
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock %}

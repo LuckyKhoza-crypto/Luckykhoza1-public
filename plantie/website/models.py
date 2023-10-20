@@ -6,6 +6,7 @@ class PostImage(models.Model):
     bio = models.TextField(max_length= 254, blank=True)
     # id = models.AutoField(primary_key=True)
     image = models.ImageField(null=True, blank=True, upload_to='images/')
+    date_created = models.DateTimeField(auto_now_add=True, null=True)
 
     def __str__(self):
         return self.name
