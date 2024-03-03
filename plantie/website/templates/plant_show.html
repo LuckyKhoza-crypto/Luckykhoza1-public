@@ -2,40 +2,38 @@
 
 {% block content %}
 
-<h1 class="container-fluid">Past plant posts on our website</h1>
-<br/>
-<div class="container-fluid">
+  <h1 class="container-fluid">Past plant posts on our website</h1>
+  <br/>
+  <div class="container-fluid">
     <div class="px-lg-5">
       <div class="row">
-        
+
         {% for image in plantie_images %}
-        <div class="col-xl-3 col-lg-4 col-md-6 mb-4" style="max-width: 300px; max-height: 400px;">
-          <div class="bg-white rounded shadow-sm" style="height: 100%;">
-            <img src="{{ image.image.url }}" alt="{{ image.name }}" class="img-fluid card-img-top" style="max-width: 100%; max-height: 200px;">
-            <div class="p-4">
-              <h5> <a class="text-dark">{{ image.name }}</a></h5>
-              <p class="small text-muted mb-0">{{ image.bio }}</p>
-              
+          <div class="col-xl-3 col-lg-4 col-md-6 mb-4" style="max-width: auto; max-height: 100%;">
+            <div class="bg-white rounded shadow-sm" style="height: 100%;">
+              <img src="{{ image.image.url }}" alt="{{ image.name }}" class="img-fluid card-img-top" style="max-width: 100%; max-height: 100%;">
+              <div class="p-4">
+                <h5>
+                  <a class="text-dark">{{ image.name }}</a>
+                </h5>
+                <p class="small text-muted mb-0">{{ image.bio }}</p>
+
+              </div>
             </div>
           </div>
-        </div>
         {% endfor %}
       </div>
-      <div class="py-5 text-right"><a href="#" class="btn btn-dark px-5 py-3 text-uppercase">Top</a></div>
+      <div class="py-5 text-right">
+        <a href="#" class="btn btn-dark px-5 py-3 text-uppercase">Top</a>
+      </div>
     </div>
   </div>
-  
-  <style>
-  body {
-    background: #f4f4f4;
-  }
-  
-  .banner {
-    background: #a770ef;
-    background: -webkit-linear-gradient(to right, #a770ef, #cf8bf3, #fdb99b);
-    background: linear-gradient(to right, #a770ef, #cf8bf3, #fdb99b);
-  }
-  
 
-</style>
+  <style>
+    .banner {
+      background: #a770ef;
+      background: -webkit-linear-gradient(to right, #a770ef, #cf8bf3, #fdb99b);
+      background: linear-gradient(to right, #a770ef, #cf8bf3, #fdb99b);
+    }
+  </style>
 {% endblock %}

@@ -13,6 +13,7 @@ urlpatterns = [
     path('plantie_images', views.plant_show, name='plant_show'),
     path('post_image/', views.post_image, name='post_image'),
     path('search_plant/', views.search_plant, name='search_plant'),
+    path('tree/', views.tree, name='tree'),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

@@ -1,19 +1,33 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <br/>
-    <div class="container">
-        <h3> Sign Up to our website </h3>
-        {% if message %}
-            <p style="color: red;" > {{ message}} </p>
-        {% endif %}
+  <br><br><br>
+  <div class="container">
+    <div class="container mb-3 ">
+      {% if message %}
+        <div class="alert alert-danger d-flex justify-content-center " role="alert" style="width: 50%;margin: auto; border: 0;">
+          <p>{{ message }}</p>
         </div>
-    <br/>
-
-    <form class="container text-white bg-secondary p-2" method="POST">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Sign Up</button>
-    </form>
-    <br/>
-{% endblock %}
+      {% endif %}
+    </div>
+    <div class="container my-5">
+      <div class="card p-4" style="background-color: lightgray; max-width: 85%; margin: auto; border: 0;">
+        <form method="POST">
+          {% csrf_token %}
+          <div class="form-group">
+            {% for field in form %}
+              <div class="mb-3">
+                <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
+                <div>{{ field }}</div>
+                <!-- Removed <p> tag around {{ field }} for better control -->
+              </div>
+            {% endfor %}
+            <div class="text-center ">
+              <!-- Changed to text-center for better alignment -->
+              <button type="submit" class="btn btn-success  ">Sign Up</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </di</div>
+  {% endblock %}

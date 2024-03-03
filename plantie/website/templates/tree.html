@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+    </head>
+    <body>
+        {% block content %}
+        <div class="container m-2">
+            <form class="d-flex" role="search" action="{% url 'tree' %}" >
+              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search_tree" >
+              <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+          </div>
+            
+            <br/>
+            <div class="container">
+                <h1>Whitman Trees</h1>
+                <br/>
+                <div>
+                    <div style="display: flex; font-weight: bold;">
+                      <div style="flex: 1;">Tree ID</div>
+                      <div style="flex: 1;">Species</div>
+                      <div style="flex: 1;">Common Name</div>
+                      <div style="flex: 1;">Family</div>
+                      <div style="flex: 1;">Waypoint</div>
+                    </div>
+                    {% for tree in res %}
+                      <div style="display: flex; margin-top: 10px;">
+                        <div style="flex: 1;">{{ tree.Tree_ID }}</div>
+                        <div style="flex: 1;">{{ tree.Species }}</div>
+                        <div style="flex: 1;">{{ tree.Common_Name }}</div>
+                        <div style="flex: 1;">{{ tree.Family }}</div>
+                        <div style="flex: 1;">{{ tree.Waypoint }}</div>
+                      </div>
+                    {% endfor %}
+                  </div>
+                  
+              </div>
+              
+
+        {% endblock %}
+
+        
+        <script src="" async defer></script>
+    </body>
+</html>

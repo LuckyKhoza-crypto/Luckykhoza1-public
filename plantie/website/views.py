@@ -3,7 +3,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.db import models
 from .import forms
 from .forms import LoginForm, PostImageForm
-from .models import PostImage
+from .models import PostImage, Tree
 from django.http import HttpResponse
 from django.db.models import Q  # New
 
@@ -76,3 +76,15 @@ def search_plant(request):
     else:
         res = PostImage.objects.all().order_by('-date_created')
         return render(request, 'search_plant.html', {'res': res})
+    
+def tree(request):
+    if request.method == 'GET':
+        param = request.GET.get('search_tree')
+        if param == None:
+            param = ''
+        res = Tree.objects.filter(Q(Tree_ID__icontains=param) | Q(Species__icontains=param) | Q(Common_Name__icontains=param) | Q(Family__icontains=param) | Q(Waypoint__icontains=param))
+        # tree = Tree.objects.all()
+        return render(request, 'tree.html', {'res':res})
+    else:
+        # res = Tree.objects.all()
+        return render(request, 'tree.html', {})

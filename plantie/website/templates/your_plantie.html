@@ -1,29 +1,46 @@
 {% extends 'base.html' %}
 
 {% block content %}
-{{ PostImage }}
+  <script src="https://apis.google.com/js/platform.js" async="async" defer="defer"></script>
+  <br><br>
+  <div class="m-4">
+    {{ PostImage }}
     {% if user.PostImage %}
-        {{ PostImage.image.url }}
+      {{ PostImage.image.url }}
     {% endif %}
+
     {% if user.is_authenticated %}
 
-        <h1> Welcome {{ user.username }}. Please go ahead and add your image below. </h1>
-        <h5>Click here to add image
+      <h1>
+        Welcome
+        {{ user.username }}. Please go ahead and add your image below.
+      </h1>
+      <h5>Click here to add image
         <a href="{% url 'post_image' %}">Post Image</a>
-        </h5>
-        {% load static %}
-        <img src="{% static 'spider.jpeg' %}" alt="spider plant" style="height: 17%; width:17%;" >
+      </h5>
+      {% load static %}
+      <img src="{% static 'spider.jpeg' %}" alt="spider plant" style="height: 17%; width:17%;">
 
-        
+      <div>jouse</div>
 
     {% else %}
-        <h1> Please create an account first to post a picture. </h1>
-        <p style="color: red;" > {{ message}} or <a href="{% url 'signup' %}">signup</a> if you don't have an account </p>
-        <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" >Post</button>
+
+      <div class="m-4">
+
+        <div class="alert alert-danger mt-3 mb-3 " role="alert" style="width: 40%; margin: auto;">
+          <p4 class="container d-flex justify-content-center">Please login to post a picture.</p4>
+        </div>
+        <div class="container d-flex justify-content-center g-signin2">
+          <button class="btn btn-primary">
+            <a class="text-white" href="/accounts/google/login/?next=/your_plantie/">Log in with Google</a>
+          </button>
+        </div>
+        <br><br>
+
+      </div>
+      <br><br>
+
     {% endif %}
-    
- 
+  </div>
+
 {% endblock %}
